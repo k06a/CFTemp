@@ -3,4 +3,4 @@ Template Xcode project for CodeForces
 
 # Usage
 
-Just: `.configure 346`
+Just: `./configure 346`
