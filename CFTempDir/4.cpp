@@ -16,11 +16,13 @@
 
 using namespace std;
 
-void main_file(string const& filename);
+int main_file(string const& filename);
 
 int main(int argc, const char * argv[])
 {
-#ifdef DEBUG
+    ios_base::sync_with_stdio(false);
+    
+#ifndef ONLINE_JUDGE
     string base = __FILE__;
     base.replace(base.length()-3, 3, "txt");
     for (int i = 0; i < 3; i++) {
@@ -29,23 +31,23 @@ int main(int argc, const char * argv[])
         main_file(filename);
         cout << endl;
     }
-#else
-    main_file("");
-#endif
 }
 
-void main_file(string const& filename)
+int main_file(string const& filename)
 {
-#ifdef DEBUG
     ifstream cin(filename);
-    if (!cin)
-        return;
+    if (!cin || cin.peek() == -1)
+        return 0;
 #endif
     
     int n;
     cin >> n;
     
+    vector<int> v(n);
+    cin >> v;
+    
     
     
     cout << n;
+    return 0;
 }
