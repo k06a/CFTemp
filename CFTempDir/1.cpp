@@ -35,6 +35,37 @@ ostream &operator <<(ostream &stream, const vector<T> &vec) {
     return stream;
 }
 
+template<typename T>
+class MapSmartAccessorWrapper {
+    T &m;
+public:
+    MapSmartAccessorWrapper(T &m) : m(m) {
+    }
+    typename T::mapped_type & operator[] (const typename T::key_type &key) {
+        return m[key];
+    }
+    typename T::mapped_type operator[] (const typename T::key_type &key) const {
+        auto it = m.find(key);
+        if (it == m.end()) {
+            typedef typename T::mapped_type mapped_type;
+            return mapped_type();
+        }
+        return it->second;
+    }
+};
+
+template<typename TKey, typename TValue>
+MapSmartAccessorWrapper<map<TKey,TValue> > operator++ (map<TKey,TValue> &m, int i) {
+    return m;
+}
+
+template<typename TKey, typename TValue>
+MapSmartAccessorWrapper<unordered_map<TKey,TValue> > operator++ (unordered_map<TKey,TValue> &m, int i) {
+    return m;
+}
+
+//
+
 int main_file(string const& filename);
 
 int main(int argc, const char * argv[])
