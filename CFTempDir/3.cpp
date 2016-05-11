@@ -16,6 +16,18 @@
 
 using namespace std;
 
+template<typename T1, typename T2>
+istream &operator >>(istream &stream, pair<T1,T2> &p) {
+    stream >> p.first >> p.second;
+    return stream;
+}
+
+template<typename T1, typename T2>
+ostream &operator <<(ostream &stream, const pair<T1,T2> &p) {
+    stream << p.first << ' ' << p.second;
+    return stream;
+}
+
 template<typename T>
 istream &operator >>(istream &stream, vector<T> &vec) {
     for (size_t i = 0; i < vec.size(); i++) {
